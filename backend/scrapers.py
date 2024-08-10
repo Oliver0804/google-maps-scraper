@@ -107,6 +107,7 @@ def split_task_by_query(data):
     """Splits a task dictionary into a list of tasks based on queries,
     optionally prepending city names if a country is specified.
     """
+    data['lang'] = "zh-TW"
     if data["country"]:
         cities = get_cities(data["country"])
 
@@ -118,7 +119,7 @@ def split_task_by_query(data):
 
         queries = prepend_to_strings(cities, data["business_type"], )
         del data["queries"] # Avoid passing potentially big queries object
-        return create_tasks_for_queries(data, queries)
+        return create_tasks_for_queries(data, queries) 
     else:
         queries = data["queries"]  # Use queries directly
         del data["queries"] # Avoid passing potentially big queries object
